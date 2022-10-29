@@ -26,7 +26,7 @@ phases:
   post_build:
     commands:
       #- docker push $REPOSITORY:latest
-      - docker push public.ecr.aws/p2w0c5l8/eks-test-1:2022-10-29.19.17.43.125699e0
+      - docker push public.ecr.aws/p2w0c5l8/eks-test-1:latest
       - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
       - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
