@@ -12,7 +12,7 @@ phases:
       - export PATH=$PWD/:$PATH
   pre_build:
       commands:
-        - TAG="$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+        #- TAG="$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
         - echo $TAG
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY:$TAG"'@' Kubernetes/eks-deployment.yml
         #- $(aws ecr get-login --no-include-email)
@@ -22,10 +22,10 @@ phases:
     commands:
       #- docker build --tag $REPOSITORY:$latest .
       #- docker build  https://github.com/ashutosh19021993/eksci.git#hello:latest .
-      - docker build -t eks-test-1:$TAG .
+      - docker build -t eks-test-1:latest .
   post_build:
     commands:
-      #- docker push $REPOSITORY:$TAG
+      #- docker push $REPOSITORY:latest
       - docker push public.ecr.aws/p2w0c5l8/eks-test-1:2022-10-29.19.17.43.125699e0
       - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
       - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
