@@ -17,7 +17,8 @@ phases:
         - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
-      - docker build --tag $REPOSITORY:$latest .
+      #- docker build --tag $REPOSITORY:$latest .
+      - docker build --tag https://github.com/ashutosh19021993/eksci.git:latest
 
   post_build:
     commands:
