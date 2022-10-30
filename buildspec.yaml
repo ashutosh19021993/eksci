@@ -23,6 +23,7 @@ phases:
       #- docker build --tag $REPOSITORY:$latest .
       #- docker build  https://github.com/ashutosh19021993/eksci.git#hello:latest .
       - docker build -t eks-test-1:latest .
+      - docker tag eks-test-1:latest public.ecr.aws/p2w0c5l8/eks-test-1:latest
   post_build:
     commands:
       #- docker push $REPOSITORY:latest
