@@ -36,7 +36,7 @@ phases:
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
       - echo $AWS_EXPIRATION
       - aws eks update-kubeconfig --name eks
-      - kubectl apply -f Kubernetes/eks-deployment.yml 
+      - kubectl apply -f Kubernetes/eks-deployment.yml --kubeconfig $HOME/.kube/config
       - printf '[{"name":"eks-deployment","imageUri":"%s"}]' $REPOSITORY:$TAG > build.json
 artifacts:
   files: build.json
