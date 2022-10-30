@@ -16,7 +16,7 @@ phases:
         - echo $TAG
         - sed -i 's@CONTAINER_IMAGE@'"$REPOSITORY:$TAG"'@' Kubernetes/eks-deployment.yml
         #- $(aws ecr get-login --no-include-email)
-        - aws ecr-public get-login-password --region us-west-1 | docker login --username AWS --password-stdin public.ecr.aws/p2w0c5l8
+        - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/p2w0c5l8
         - export KUBECONFIG=$HOME/.kube/config
   build:
     commands:
