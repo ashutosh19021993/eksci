@@ -38,7 +38,7 @@ phases:
       - echo $AWS_EXPIRATION
       - aws eks update-kubeconfig --name eks
       #- kubectl get ns 
-      - kubectl apply -f Kubernetes/eks-deployment.yml --kubeconfig ~/.kube/config
+      - kubectl apply -f Kubernetes/eks-deployment.yml 
       - printf '[{"name":"eks-deployment","imageUri":"%s"}]' $REPOSITORY:$TAG > build.json
 artifacts:
   files: build.json
